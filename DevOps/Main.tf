@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "example" {
-  bucket = "p3l1_2"
+  bucket = "p3l12"
 }
 
 resource "aws_s3_bucket_ownership_controls" "example" {

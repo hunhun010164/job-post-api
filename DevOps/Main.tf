@@ -4,5 +4,5 @@ provider "aws" {
 
 resource "aws_s3_bucket" "example_bucket" {
   bucket = "p3l1_2"
-  acl    = "private"
+  acl    = "public"
 }

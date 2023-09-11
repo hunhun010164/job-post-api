@@ -1,8 +1,17 @@
-provider "aws" {
-  region = "ap-southeast-2"
+resource "aws_s3_bucket" "example" {
+  bucket = "p3l1_2"
 }
 
-resource "aws_s3_bucket" "example_bucket" {
-  bucket = "p3l1_2"
-  acl    = "public"
+resource "aws_s3_bucket_ownership_controls" "example" {
+  bucket = aws_s3_bucket.example.id
+  rule {
+    object_ownership = "BucketOwnerPreferred"
+  }
+}
+
+resource "aws_s3_bucket_acl" "example" {
+  depends_on = [aws_s3_bucket_ownership_controls.example]
+
+  bucket = aws_s3_bucket.example.id
+  acl    = "public-read"
 }

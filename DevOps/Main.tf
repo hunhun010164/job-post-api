@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "p3l1" {
-  bucket = "my-tf-example-bucket"
+  bucket = "p3l1"
 }
 
 resource "aws_s3_bucket_ownership_controls" "p3l1" {

@@ -28,19 +28,6 @@ resource "aws_s3_bucket_acl" "yyq" {
   acl    = "public-read"
 }
 
-resource "aws_s3_bucket" "yyq" {
-  bucket = "p3l1"
-
-  tags = {
-    Name = "p3l1tag"
-  }
-}
-
-resource "aws_s3_bucket_acl" "yyq_acl" {
-  bucket = aws_s3_bucket.yyq.id
-  acl    = "private"
-}
-
 locals {
   s3_origin_id = data.aws_s3_bucket.yyq.id
 }

@@ -1,16 +1,16 @@
-resource "aws_s3_bucket" "p3l1" {
+resource "aws_s3_bucket" "yyq" {
   bucket = "p3l1"
 }
 
-resource "aws_s3_bucket_ownership_controls" "p3l1" {
-  bucket = aws_s3_bucket.p3l1.id
+resource "aws_s3_bucket_ownership_controls" "yyq" {
+  bucket = aws_s3_bucket.yyq.id
   rule {
     object_ownership = "BucketOwnerPreferred"
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "p3l1" {
-  bucket = aws_s3_bucket.p3l1.id
+resource "aws_s3_bucket_public_access_block" "yyq" {
+  bucket = aws_s3_bucket.yyq.id
 
   block_public_acls       = false
   block_public_policy     = false
@@ -18,12 +18,13 @@ resource "aws_s3_bucket_public_access_block" "p3l1" {
   restrict_public_buckets = false
 }
 
-resource "aws_s3_bucket_acl" "p3l1" {
+resource "aws_s3_bucket_acl" "yyq" {
   depends_on = [
-    aws_s3_bucket_ownership_controls.p3l1,
-    aws_s3_bucket_public_access_block.p3l1,
+    aws_s3_bucket_ownership_controls.yyq,
+    aws_s3_bucket_public_access_block.yyq,
   ]
 
-  bucket = aws_s3_bucket.p3l1.id
+  bucket = aws_s3_bucket.yyq.id
   acl    = "public-read"
 }
+

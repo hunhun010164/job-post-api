@@ -1,40 +1,23 @@
-resource "aws_s3_bucket" "yyq" {
-  bucket = "p3l1"
-}
+resource "aws_s3_bucket" "b" {
+  bucket = "mybucket"
 
-resource "aws_s3_bucket_ownership_controls" "yyq" {
-  bucket = aws_s3_bucket.yyq.id
-  rule {
-    object_ownership = "BucketOwnerPreferred"
+  tags = {
+    Name = "My bucket"
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "yyq" {
-  bucket = aws_s3_bucket.yyq.id
-
-  block_public_acls       = false
-  block_public_policy     = false
-  ignore_public_acls      = false
-  restrict_public_buckets = false
-}
-
-resource "aws_s3_bucket_acl" "yyq" {
-  depends_on = [
-    aws_s3_bucket_ownership_controls.yyq,
-    aws_s3_bucket_public_access_block.yyq,
-  ]
-
-  bucket = aws_s3_bucket.yyq.id
-  acl    = "public-read"
+resource "aws_s3_bucket_acl" "b_acl" {
+  bucket = aws_s3_bucket.b.id
+  acl    = "private"
 }
 
 locals {
-  s3_origin_id = data.aws_s3_bucket.yyq.id
+  s3_origin_id = "myS3Origin"
 }
 
 resource "aws_cloudfront_distribution" "s3_distribution" {
   origin {
-    domain_name              = aws_s3_bucket.yyq.bucket_regional_domain_name
+    domain_name              = aws_s3_bucket.b.bucket_regional_domain_name
     origin_access_control_id = aws_cloudfront_origin_access_control.default.id
     origin_id                = local.s3_origin_id
   }

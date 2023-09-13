@@ -29,6 +29,41 @@ resource "aws_s3_bucket_acl" "yyq" {
 }
 
 
+
+resource "aws_iam_policy" "s3_logs_policy" {
+  name        = "S3LogsPolicy"
+  description = "Custom policy for S3 logs access"
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Action = [
+          "s3:GetBucketAcl",
+          "s3:PutBucketAcl",
+          "s3:GetObject",
+          "s3:PutObject"
+        ],
+        Effect   = "Allow",
+        Resource = [
+          "arn:aws:s3:::mylogs.s3.amazonaws.com",
+          "arn:aws:s3:::mylogs.s3.amazonaws.com/*"
+        ]
+      }
+    ]
+  })
+}
+
+resource "aws_iam_policy_attachment" "attach_s3_logs_policy" {
+  name       = "attach_s3_logs_policy"
+  policy_arn = aws_iam_policy.s3_logs_policy.arn
+  users      = ["20230911"]
+}
+
+
+
+
+
 resource "aws_cloudfront_origin_access_control" "example" {
   name                              = "example"
   description                       = "Example Policy"

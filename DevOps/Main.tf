@@ -59,6 +59,7 @@ resource "aws_cloudfront_distribution" "yyq_distribution" {
     prefix          = "myprefix"
   }
 
+  aliases = ["p3.siemens.global"]
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
@@ -140,4 +141,9 @@ resource "aws_cloudfront_distribution" "yyq_distribution" {
   viewer_certificate {
     cloudfront_default_certificate = true
   }
+}
+
+resource "aws_acm_certificate" "example" {
+  domain_name       = "p3.siemens.global"
+  validation_method = "DNS"
 }

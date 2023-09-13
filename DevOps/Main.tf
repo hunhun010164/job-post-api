@@ -59,7 +59,6 @@ resource "aws_cloudfront_distribution" "yyq_distribution" {
     prefix          = "myprefix"
   }
 
-  aliases = ["p3l1.siemens.global"]
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]

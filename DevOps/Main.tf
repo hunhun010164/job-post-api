@@ -30,6 +30,15 @@ resource "aws_s3_bucket_acl" "yyq" {
 
 
 
+
+provider "aws" {
+  region = "ap-southeast-2"  # 更改为您所使用的 AWS 区域
+}
+
+resource "aws_iam_user" "example_user" {
+  name = "20230911"
+}
+
 resource "aws_iam_policy" "s3_logs_policy" {
   name        = "S3LogsPolicy"
   description = "Custom policy for S3 logs access"
@@ -53,6 +62,7 @@ resource "aws_iam_policy" "s3_logs_policy" {
     ]
   })
 }
+
 
 resource "aws_iam_policy_attachment" "attach_s3_logs_policy" {
   name       = "attach_s3_logs_policy"

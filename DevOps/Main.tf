@@ -55,7 +55,7 @@ resource "aws_cloudfront_distribution" "yyq_distribution" {
 
   logging_config {
     include_cookies = false
-    bucket          = "mylogs.s3.amazonaws.com"
+    bucket          = "p3l1.s3.amazonaws.com"
     prefix          = "myprefix"
   }
 

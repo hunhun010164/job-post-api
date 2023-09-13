@@ -139,11 +139,16 @@ resource "aws_cloudfront_distribution" "yyq_distribution" {
   }
 
   viewer_certificate {
-    cloudfront_default_certificate = true
+    acm_certificate_arn = data.aws_acm_certificate.example.arn
   }
 }
 
 resource "aws_acm_certificate" "example" {
   domain_name       = "p3.siemens.global"
   validation_method = "DNS"
+}
+
+data "aws_acm_certificate" "example" {
+  domain   = "p3.siemens.global"
+  statuses = ["ISSUED"]
 }

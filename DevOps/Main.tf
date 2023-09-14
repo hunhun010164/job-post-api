@@ -29,6 +29,27 @@ resource "aws_s3_bucket_acl" "yyq" {
 }
 
 
+
+provider "aws" {
+  region = "ap-southeast-2"
+}
+
+resource "aws_route53_zone" "example_zone" {
+  name = "p3.siemens.global"
+}
+
+resource "aws_route53_record" "example_record" {
+  zone_id = aws_route53_zone.example_zone.zone_id
+  name    = "@"
+  type    = "A"
+
+  ttl = "300"
+
+  records = ["1.1.1.1"]
+}
+
+
+
 resource "aws_cloudfront_origin_access_control" "example" {
   name                              = "example"
   description                       = "Example Policy"

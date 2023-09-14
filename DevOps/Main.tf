@@ -40,7 +40,7 @@ resource "aws_route53_zone" "example_zone" {
 
 resource "aws_route53_record" "example_record" {
   zone_id = aws_route53_zone.example_zone.zone_id
-  name    = ""
+  name    = "@"
   type    = "A"
 
   ttl = "300"

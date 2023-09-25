@@ -66,7 +66,7 @@ locals {
 resource "aws_cloudfront_distribution" "yyq_distribution" {
   origin {
     domain_name              = aws_s3_bucket.yyq.bucket_regional_domain_name
-    origin_access_control_id = aws_cloudfront_origin_access_control.p3l1.id
+    origin_access_control_id = aws_cloudfront_origin_access_control.yyq.id
     origin_id                = local.s3_origin_id
   }
 

@@ -42,7 +42,7 @@ data "aws_acm_certificate" "existing_cert" {
 
 # Fetch details of existing hosted zone
 data "aws_route53_zone" "existing" {
-  name = "oceanzou.click."
+  name = "p3.siemens.global"
 }
 
 # Add cloudfront origin access identity

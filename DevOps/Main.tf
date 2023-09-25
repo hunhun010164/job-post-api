@@ -4,7 +4,7 @@ provider "aws" {
 
 
 resource "aws_s3_bucket" "yyq" {
-  bucket = "p3l1"
+  bucket = "p3l2"
 }
 
 resource "aws_s3_bucket_ownership_controls" "yyq" {
@@ -60,7 +60,7 @@ resource "aws_cloudfront_origin_access_control" "example" {
 }
 
 locals {
-  s3_origin_id = "p3l1"
+  s3_origin_id = "p3l2"
 }
 
 resource "aws_cloudfront_distribution" "yyq_distribution" {
@@ -77,7 +77,7 @@ resource "aws_cloudfront_distribution" "yyq_distribution" {
 
   logging_config {
     include_cookies = false
-    bucket          = "p3l1.s3.amazonaws.com"
+    bucket          = "p3l2.s3.amazonaws.com"
     prefix          = "myprefix"
   }
 

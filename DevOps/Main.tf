@@ -35,11 +35,11 @@ resource "aws_s3_bucket_acl" "yyq" {
 
 
 
-resource "aws_route53_zone" "example_zone" {
+data "aws_route53_zone" "example_zone" {
   name = "p3.siemens.global"
 }
 
-resource "aws_route53_record" "example_record" {
+data "aws_route53_record" "example_record" {
   zone_id = aws_route53_zone.example_zone.zone_id
   name    = "@"
   type    = "A"

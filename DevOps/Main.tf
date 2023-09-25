@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 
-resource "aws_s3_bucket" "yyq" {
+data "aws_s3_bucket" "yyq" {
   bucket = "p3l1-2"
 }
 

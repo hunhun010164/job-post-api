@@ -35,7 +35,7 @@ resource "aws_s3_bucket_acl" "yyq" {
 
 
 
-data "aws_route53_zone" "example_zone" {
+resource "aws_route53_zone" "example_zone" {
   name = "p3.siemens.global"
 }
 

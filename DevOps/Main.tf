@@ -1,3 +1,8 @@
+provider "aws" {
+  region = "ap-southeast-2"
+}
+
+
 resource "aws_s3_bucket" "yyq" {
   bucket = "p3l1"
 }
@@ -30,10 +35,6 @@ resource "aws_s3_bucket_acl" "yyq" {
 
 
 
-provider "aws" {
-  region = "ap-southeast-2"
-}
-
 resource "aws_route53_zone" "example_zone" {
   name = "p3.siemens.global"
 }
@@ -59,7 +60,7 @@ resource "aws_cloudfront_origin_access_control" "example" {
 }
 
 locals {
-  s3_origin_id = "myS3Origin"
+  s3_origin_id = "p3l1"
 }
 
 resource "aws_cloudfront_distribution" "yyq_distribution" {
@@ -83,7 +84,7 @@ resource "aws_cloudfront_distribution" "yyq_distribution" {
   aliases = ["p3.siemens.global"]
 
   default_cache_behavior {
-    allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
+    allowed_methods  = ["GET", "HEAD", "OPTIONS","POST"]
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = local.s3_origin_id
 
@@ -150,7 +151,7 @@ resource "aws_cloudfront_distribution" "yyq_distribution" {
 
   restrictions {
     geo_restriction {
-      restriction_type = "whitelist"
+      restriction_type = "none"
       locations        = ["US", "CA", "GB", "DE"]
     }
   }

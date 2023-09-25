@@ -172,5 +172,6 @@ resource "aws_acm_certificate" "example" {
 
 data "aws_acm_certificate" "example" {
   domain   = "p3.siemens.global"
+  statuses = ["ISSUED"]
 }
 

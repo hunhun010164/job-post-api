@@ -149,6 +149,13 @@ resource "aws_cloudfront_distribution" "yyq_distribution" {
 
   price_class = "PriceClass_200"
 
+  restrictions {
+    geo_restriction {
+      restriction_type = "none"
+      locations        = ["US", "CA", "GB", "DE"]
+    }
+  }
+
   tags = {
     Environment = "production"
   }

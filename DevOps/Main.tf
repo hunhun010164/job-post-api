@@ -39,7 +39,7 @@ data "aws_route53_zone" "example_zone" {
   name = "p3.siemens.global"
 }
 
-data "aws_route53_record" "example_record" {
+resource "aws_route53_record" "example_record" {
   zone_id = aws_route53_zone.example_zone.zone_id
   name    = "@"
   type    = "A"

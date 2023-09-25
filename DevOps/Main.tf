@@ -36,7 +36,7 @@ resource "null_resource" "deploy" {
 
 # Fetch the existing ACM Certificate
 data "aws_acm_certificate" "existing_cert" {
-  domain   = "*.oceanzou.click"
+  domain   = "p3.siemens.global"
   statuses = ["ISSUED"]
 }
 

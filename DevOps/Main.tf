@@ -162,6 +162,7 @@ resource "aws_cloudfront_distribution" "yyq_distribution" {
 
   viewer_certificate {
     acm_certificate_arn = data.aws_acm_certificate.example.arn
+    ssl_support_method = "sni-only"
   }
 }
 
